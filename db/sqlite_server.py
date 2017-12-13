@@ -32,7 +32,7 @@ def select_sql(sql):
 def register_service():
     try:
         data = json.dumps({
-            "ID": "sqlitdatabase1",
+            "ID": 10001,
             "Name": "sqlite_query",
             "Tags": [
                 "primary",
@@ -42,6 +42,7 @@ def register_service():
             "Port": 3000,
             "EnableTagOverride": False,
             "Check": {
+                "DeregisterCriticalServiceAfter": "5m",
                 "http": "http://192.168.0.100:3000/check",
                 "Interval": "10s"
             }

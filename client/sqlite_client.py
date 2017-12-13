@@ -4,11 +4,12 @@ import requests
 
 class Client:
 
-    def __init__(self):
+    def __init__(self, service_id):
         pass
         self.service = requests.get(
             'http://192.168.0.100:8500/v1/agent/services').json().get(
-            'sqlitdatabase1')
+            service_id)
+        print(self.service)
 
     def select_result(self, sql):
         address = self.service.get("Address")
@@ -18,7 +19,7 @@ class Client:
         return response
 
 
-sqlite_client = Client()
+sqlite_client = Client("10001")
 result = sqlite_client.select_result('select name from student_table')
 for i in result:
     print(i[0])
